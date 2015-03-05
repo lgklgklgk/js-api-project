@@ -40,6 +40,19 @@ class Student
     self.new(result)
   end
   
+  def self.delete(s_id)
+    result = DATABASE.execute("DELETE FROM students WHERE id = #{s_id}")[0]
+    
+    self.new(result)
+  end
+  
+  def self.save(options)
+    add_row = DATABASE.execute("INSERT INTO students (name, github, age) 
+    VALUES ('#{options:[name]}', '#{options[github]}', '#{options[age]}')") 
+    
+    self.new(add_row)
+  end
+  
   # Returns the object as a Hash.
   def to_hash
     {

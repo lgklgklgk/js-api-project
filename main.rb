@@ -32,6 +32,13 @@ get "/students/:id/edit" do
   student_hash = student.to_hash
   student_hash.to_json  
 end
+
+get "/students/:id/delete" do
+  student = Student.delete(params[:id])
+  student_hash = student.to_hash
+  student_hash.to_json  
+end
+
 # Afternoon Assignment:
 
 # - Add a route that modifies a student record. There's no need for a page that shows a form for editing. We're just working with request paths directly. (Use 'get' instead of 'post' to make it easier to check that things work. Once it's working, change it to 'post'.)
