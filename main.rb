@@ -26,8 +26,8 @@ get "/students/:id" do
   student_hash.to_json
 end
 
-
-get "/students/:id/edit" do
+post "/students/:id/edit" do
+  binding.pry
   student = Student.find(params[:id])
   student_hash = student.to_hash
   student_hash.to_json  
