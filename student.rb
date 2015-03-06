@@ -26,6 +26,8 @@ class Student
   def self.all
     results = DATABASE.execute("SELECT * FROM students")
     
+  #creates a new array index for each item returned from
+  #students
     results.map { |row_hash| self.new(row_hash) }
   end
   
@@ -40,6 +42,11 @@ class Student
     self.new(result)
   end
   
+  
+  # Public: Add a single student to the database.
+  #
+  #
+  # Returns a Student object.
   def save
     if self.id == nil
       DATABASE.execute("INSERT INTO students (name,age,github) VALUES ('#{self.name}', #{self.age.to_i}, '#{self.github}')")

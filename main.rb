@@ -1,3 +1,15 @@
+# ROUTE HANDLER NOTES:
+# 
+#.to_hash:
+#converts student objects to a hash that can be interpreted
+#by the .to_json method
+# 
+#.to_json:
+#converts students_hash to javascript object notation
+#to display on client page
+# 
+
+
 require "sinatra"
 require 'json'
 require "sqlite3"
@@ -10,6 +22,9 @@ require_relative "student"
 
 get "/" do
   students = Student.all
+ 
+  #creates a new array index for each item returned from
+  #students
   students_hash = students.map {|s| s.to_hash}
   @display_students = students_hash.to_json
   erb :homepage
