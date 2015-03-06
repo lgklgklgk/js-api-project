@@ -2,6 +2,7 @@
 document.getElementById("edit").addEventListener('click', edit_prompt)
 document.getElementById("add").addEventListener('click', add_prompt)
 document.getElementById("delete").addEventListener('click', delete_prompt)
+document.getElementById("display").addEventListener('change', location.reload)
 
 function edit_prompt(event) {
   their_choice = prompt("What student do you want to edit?");
@@ -41,6 +42,7 @@ function sendData(data) {
 
   // We define what will happen if the data is successfully sent
   XHR.addEventListener('load', function(event) {
+    setTimeout (window.location.reload(true), 1000);
     alert('Yeah! Data sent and response loaded.');
   });
 

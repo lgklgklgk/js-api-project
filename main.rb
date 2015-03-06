@@ -15,12 +15,6 @@ get "/" do
   erb :homepage
 end
 
-get "/students/:id" do
-  student = Student.find(params[:id])
-  student_hash = student.to_hash
-  student_hash.to_json
-end
-
 post "/students/:id/edit" do
   student = Student.find(params[:id])
   student_hash = student.to_hash
@@ -29,7 +23,7 @@ end
 
 post "/students/edited" do
   a = Student.new(params)
-  a.save
+  a.save 
 end
 
 
