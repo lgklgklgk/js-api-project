@@ -1,6 +1,7 @@
 require "sinatra"
 require 'json'
 require "sqlite3"
+require "pry"
 
 DATABASE = SQLite3::Database.new("students.db")
 DATABASE.results_as_hash = true
@@ -8,23 +9,28 @@ DATABASE.results_as_hash = true
 require_relative "student"
 
 get "/" do
-  erb :homepage
-end
-
-get "/students" do
   students = Student.all
-  
   students_hash = students.map {|s| s.to_hash}
-  students_hash.to_json
+  @display_students = students_hash.to_json
+  erb :homepage
 end
 
 get "/students/:id" do
   student = Student.find(params[:id])
-
   student_hash = student.to_hash
   student_hash.to_json
 end
 
+post "/students/:id/edit" do
+  student = Student.find(params[:id])
+  student_hash = student.to_hash
+  student_hash.to_json  
+end
+
+post "/students/edited" do
+  a = Student.new(params)
+  a.save
+end
 
 
 # Afternoon Assignment:
